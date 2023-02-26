@@ -1,5 +1,7 @@
 ﻿using Ecommerce.Application.Abstractions;
 using Ecommerce.Persistence.Concretes;
+using Ecommerce.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,7 @@ namespace Ecommerce.Persistence
     {
         public static void AddPersistenceServices(this IServiceCollection services)
         {
-            services.AddSingleton<IProductService, ProductService>();
+            services.AddDbContext<EcommerceDbContext>(options => options.UseNpgsql("User ID=postgres;Password=123456;Host=localhost;Port=5432;Database=EcommerceDb;"));
         }
     }
 }
